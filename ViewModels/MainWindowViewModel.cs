@@ -1,6 +1,8 @@
 ﻿using CV19.Infrastructure.Commands;
 using CV19.Models;
 using CV19.ViewModels.Base;
+using OxyPlot.Series;
+using OxyPlot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using DataPoint = CV19.Models.DataPoint;
 
 namespace CV19.ViewModels
 {
@@ -27,7 +30,7 @@ namespace CV19.ViewModels
         private IEnumerable<DataPoint> _TestDataPoints;
 
         /// <summary>Тестовый набор данных для визуализации графиков/// </summary>
-        private IEnumerable<DataPoint> TestDataPoints
+        public IEnumerable<DataPoint> TestDataPoints
         {
             get => _TestDataPoints;
             set=> Set(ref _TestDataPoints, value);
