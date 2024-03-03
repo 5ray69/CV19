@@ -43,7 +43,7 @@
             </StatusBarItem>
         </StatusBar>
         <TabControl>
-            <TabItem>
+            <TabItem Visibility="Collapsed">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <!--<Image Source=""></Image>-->
@@ -79,15 +79,19 @@
 
                 </Grid>
             </TabItem>
-            <!--<TabItem Header="{Binding TestDataPoints[434].XValue}"></TabItem>-->
             <TabItem Header="График">
-            </TabItem>
+            <!--<TabItem Header="{Binding TestDataPoints[434].XValue}"></TabItem>-->
                 <!--<oxy:Plot>
                     <oxy:Plot.Axes>
                         <oxy:LinearAxis Position="Left"/>
                         <oxy:LinearAxis Position="Bottom"/>
                     </oxy:Plot.Axes>
+                <oxy:LineSeries Color="Red"
+                                    ItemSource="{Binding TestDataPoints}"
+                                    DataFieldX="XValue"
+                                    DataFieldY="YValue"/>
                 </oxy:Plot>-->
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>
