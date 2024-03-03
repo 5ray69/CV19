@@ -16,6 +16,22 @@ namespace CV19.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
+        #region SelectedPageIndex : int - Номер выбранной вкладки
+
+        /// <summary>Номер выбранной вкладки</summary>
+        private int _SelectedPageIndex;
+
+        /// <summary>Номер выбранной вкладки</summary>
+        public int SelectedPageIndex
+        {
+            get => _SelectedPageIndex;
+            set => Set(ref _SelectedPageIndex, value);
+        }
+
+        #endregion
+
+
+
         ////Пример переопределения метода Dispose и освобождения ресурсов, которые модель захватит
         //protected override void Dispose(bool Disposing){ base.Dispose(Disposing); }
 
@@ -76,24 +92,42 @@ namespace CV19.ViewModels
         //команда, которая позволит закрывать нашу программу
         public ICommand CloseApplicationCommand { get; } //это сама команда
 
+        // => true обозначает, что метод всегда возвращает true (return true)
+        // написали вметсо тела метода в скобках {}
+        private bool CanCloseApplicationCommandExecute(object p) => true; //это метод определяющий команду
+
         //этот метод выполняется в тот момент когда команда выполняется
         private void OnCloseApplicationCommandExecuted(object p) //это метод определяющий команду
         {
             Application.Current.Shutdown();
         }
 
-        // => true обозначает, что метод всегда возвращает true (return true)
-        // написали вметсо тела метода в скобках {}
-        private bool CanCloseApplicationCommandExecute(object p) => true; //это метод определяющий команду
+        #endregion
+
+        public ICommand ChangeTabIndexCommand { get; }
+
+        private bool CanChangeTabIndexCommandExecute(object p) => _SelectedPageIndex >= 0;
+
+        private void OnChangeTabIndexCommandExecute(object p)
+        {
+            if (p is null) return;
+            SelectedPageIndex += Convert.ToInt32(p);
+        }
+
+
+
 
         #endregion
-        #endregion
+
+
+
 
         public MainWindowViewModel()
         {
             #region Команды
             
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+            ChangeTabIndexCommand = new LambdaCommand(OnChangeTabIndexCommandExecute, CanChangeTabIndexCommandExecute);
 
             #endregion
 
