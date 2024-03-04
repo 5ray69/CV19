@@ -55,16 +55,16 @@
         <TabControl SelectedIndex="{Binding SelectedPageIndex}">
             <TabItem Header="График">
             <!--<TabItem Header="{Binding TestDataPoints[434].XValue}"></TabItem>-->
-                <!--<oxy:Plot>
+                <oxy:Plot>
                     <oxy:Plot.Axes>
                         <oxy:LinearAxis Position="Left"/>
                         <oxy:LinearAxis Position="Bottom"/>
                     </oxy:Plot.Axes>
                 <oxy:LineSeries Color="Red"
-                                    ItemSource="{Binding TestDataPoints}"
+                                    ItemsSource="{Binding TestDataPoints}"
                                     DataFieldX="XValue"
                                     DataFieldY="YValue"/>
-                </oxy:Plot>-->
+                </oxy:Plot>
             </TabItem>
             <TabItem>
                 <TabItem.Header>
