@@ -46,7 +46,7 @@
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem MinWidth="150" MaxWidth="300" >
-                <TextBlock Text="{Binding Status}" />
+                <TextBlock Text="{Binding Status}"/>
             </StatusBarItem>
             <StatusBarItem>
                 <ProgressBar Width="120" Height="14" Value="30" ></ProgressBar>
@@ -66,11 +66,12 @@
                                     DataFieldY="YValue"/>
                 </oxy:Plot>-->
             </TabItem>
-            <TabItem Visibility="Collapsed">
+            <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <!--<Image Source=""></Image>-->
-                        <fa:ImageAwesome Icon="Refresh" Height="13" Margin="0,0,5,0" Foreground="Red" />
+                        <fa:ImageAwesome Icon="Refresh" Height="13" Margin="0,0,5,0" 
+                                         Foreground="Red"/>
                         <TextBlock Text="Вкладка 1"/>
                     </StackPanel>
                 </TabItem.Header>
