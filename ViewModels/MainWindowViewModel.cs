@@ -11,11 +11,33 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using DataPoint = CV19.Models.DataPoint;
+using System.Collections.ObjectModel;
+using CV19.Models.Decanat;
 
 namespace CV19.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
+        /*----------------------------------------------------------------------------------*/
+        public ObservableCollection<Group> Groups { get; }
+        #region SelectedGroup : Group - Выбранная группа
+
+        /// <summary>Выбранная группа/// </summary>
+        private Group _SelectedGroup;
+
+        /// <summary>Выбранная группа/// </summary>
+        public Group SelectedGroup
+        { 
+            get => _SelectedGroup;
+            set => Set(ref _SelectedGroup, value);
+        }
+        #endregion
+
+
+
+
+
+
         #region SelectedPageIndex : int - Номер выбранной вкладки
 
         /// <summary>Номер выбранной вкладки</summary>
@@ -86,7 +108,8 @@ namespace CV19.ViewModels
 
         #endregion
 
-
+        /*----------------------------------------------------------------------------------*/
+        
         #region Команды
         #region CloseApplicationCommand
         //команда, которая позволит закрывать нашу программу
@@ -119,6 +142,7 @@ namespace CV19.ViewModels
 
         #endregion
 
+        /*----------------------------------------------------------------------------------*/
 
 
 
@@ -140,8 +164,27 @@ namespace CV19.ViewModels
             }
 
             TestDataPoints = data_points;
+
+            //создадим перечисление от 1 всего 20 штук и из каждой штуки создадим группу
+            //так создали перечисление из 20 групп, которое добавим в ObservableCollection
+            //так будет намного быстрее, чем по одному добавлять в коллекцию
+            var student_index = 1;
+            var students = Enumerable.Range(1, 10).Select(i => new Student 
+            {
+                Name = $"Name {student_index}",
+                Surname = $"Surname {student_index}",
+                Patronymic = $"Patronymic {student_index++}",
+                Birthday = DateTime.Now,
+                Rating = 0
+            });
+            var groups = Enumerable.Range(1, 20).Select(i => new Group 
+            {
+                Name = $"Группа {i}",
+                Students = new ObservableCollection<Student>(students)
+            });
+            //создаем коллекцию
+            Groups = new ObservableCollection<Group>(groups);
         }
-
-    }
+	}
+    /*----------------------------------------------------------------------------------*/
 }
-
